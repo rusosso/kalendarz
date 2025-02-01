@@ -67,7 +67,7 @@ h1 {
     background-color: #d1e7dd;
 }
 
-.day.has-event:focus::after,.day.has-event:active::after  {
+.day.has-event:hover::after {
     content: attr(data-tooltip);
     position: absolute;
     top: 100%;
@@ -82,10 +82,6 @@ h1 {
     font-size: 14px;
     min-width: 150px;
     word-wrap: break-word;
-}
-.day.has-event:active::after,
-.day.has-event:focus::after {
-    display: block; /* Pokaż tooltip po kliknięciu */
 }
 
 .form-container {
@@ -166,5 +162,16 @@ button:hover {
     left: 50%; /* Przesuwamy bardziej w lewo */
     transform: translateX(-110px); /* Nie przesuwamy już o 50% */
     }
-
 }
+    @media (hover: hover) {
+        .day.has-event:hover::after {
+            display: block;
+        }
+    }
+    
+    /* Pokaż tooltip na tapnięcie dla urządzeń mobilnych */
+    @media (hover: none) {
+        .day.has-event:focus::after,
+        .day.has-event:active::after {
+            display: block;
+        }

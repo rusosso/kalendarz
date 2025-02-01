@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const prevMonthButton = document.getElementById('prevMonth');
     const nextMonthButton = document.getElementById('nextMonth');
     const currentMonthYear = document.getElementById('currentMonthYear');
+    const themeButton = document.getElementById('theme');
+    const rootElement = document.documentElement;
 
-    //Pseudo baza danych 
+    // Pseudo baza danych 
     const events = {
         "2025-02-07": 
         [
@@ -119,6 +121,29 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
         return months[monthIndex];
     }
+
+    // Funkcja do zmiany motywu
+    function toggleTheme() {
+        const currentTheme = rootElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            rootElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light'); // Zapisz motyw jasny
+        } else {
+            rootElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark'); // Zapisz motyw ciemny
+        }
+    }
+
+    // Sprawdzenie zapisanego motywu w localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        rootElement.setAttribute('data-theme', 'dark'); // Ustaw motyw ciemny
+    } else {
+        rootElement.removeAttribute('data-theme'); // Ustaw motyw jasny
+    }
+
+    // Przypisanie funkcji do przycisku
+    themeButton.addEventListener('click', toggleTheme);
 
     // Uruchomienie strony z pierwszym wydarzeniem
     renderCalendar(currentDate);

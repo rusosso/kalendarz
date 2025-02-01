@@ -1,6 +1,34 @@
+:root {
+    --primary-color: #28a745;
+    --primary-hover-color: #218838;
+    --background-color: #f4f4f4;
+    --container-background-color: #fff;
+    --text-color: #333;
+    --day-background-color: #f9f9f9;
+    --empty-day-background-color: #e9e9e9;
+    --event-day-background-color: #d1e7dd;
+    --tooltip-background-color: #333;
+    --tooltip-text-color: #fff;
+    --border-color: #ccc;
+}
+
+[data-theme="dark"] {
+    --primary-color: #218838;
+    --primary-hover-color: #28a745;
+    --background-color: #111;
+    --container-background-color: #222;
+    --text-color: #f4f4f4;
+    --day-background-color: #333;
+    --empty-day-background-color: #444;
+    --event-day-background-color: #1e3523;
+    --tooltip-background-color: #333;
+    --tooltip-text-color: #fff;
+    --border-color: hsla(0, 0%, 0%, 0);
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
 }
@@ -9,13 +37,19 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--container-background-color);
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s;
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: var(--text-color);
+}
+
+#currentMonthYear {
+    text-align: center;
 }
 
 .calendar-controls {
@@ -27,7 +61,7 @@ h1 {
 
 .calendar-controls button {
     padding: 10px;
-    background-color: #28a745;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -35,36 +69,38 @@ h1 {
 }
 
 .calendar-controls button:hover {
-    background-color: #218838;
+    background-color: var(--primary-hover-color);
 }
 
 #calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px; /* Zmniejszona przerwa między dniami */
+    gap: 5px;
     margin-bottom: 20px;
 }
 
 .day {
-    padding: 15px 10px; /* Większy padding w pionie */
-    border: 1px solid #ccc;
+    padding: 15px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: var(--day-background-color);
+    color:var(--text-color);
     position: relative;
     font-size: 14px;
-    min-height: 60px; /* Minimalna wysokość kafelka */
+    min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .day.empty {
-    background-color: #e9e9e9;
+    background-color: var(--empty-day-background-color);
     border: none;
 }
 
 .day.has-event {
-    background-color: #d1e7dd;
+    background-color: var(--event-day-background-color);
 }
 
 .day.has-event:hover::after {
@@ -73,8 +109,8 @@ h1 {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
+    background-color: var(--tooltip-background-color);
+    color: var(--tooltip-text-color);
     padding: 10px;
     border-radius: 4px;
     white-space: pre-line;
@@ -101,13 +137,13 @@ label {
 input, textarea {
     margin-bottom: 10px;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
 }
 
 button {
     padding: 10px;
-    background-color: #28a745;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -115,63 +151,60 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: var(--primary-hover-color);
 }
 
-/* Responsywność dla urządzeń mobilnych */
 @media (max-width: 600px) {
     .container {
         padding: 10px;
     }
 
     .calendar-controls {
-        flex-direction: row; /* Przyciski pozostają w jednym rzędzie */
+        flex-direction: row;
         align-items: center;
     }
 
     .calendar-controls button {
-        margin: 0 5px; /* Mniejszy margines między przyciskami */
-        padding: 8px; /* Mniejszy padding dla przycisków */
-        font-size: 14px; /* Mniejsza czcionka w przyciskach */
+        margin: 0 5px;
+        padding: 8px;
+        font-size: 14px;
     }
 
     #calendar {
-        gap: 3px; /* Jeszcze mniejsza przerwa między dniami */
+        gap: 3px;
     }
 
     .day {
-        padding: 10px 5px; /* Mniejszy padding w pionie na mobilnych */
-        font-size: 12px; /* Mniejsza czcionka w dniach */
-        min-height: 40px; /* Zmniejszona wysokość o około 50% */
+        padding: 10px 5px;
+        font-size: 12px;
+        min-height: 40px;
     }
 
     .day.has-event:hover::after {
-    font-size: 14px;
-    min-width: 120px;
-
+        font-size: 14px;
+        min-width: 120px;
     }
 
-    /* Dla pierwszej kolumny */
     #calendar > .day:nth-child(7n+1).has-event:hover::after {
-    left: 50%; /* Przesuwamy bardziej w prawo */
-    transform: translateX(-30px); /* Nie przesuwamy już o 50% */
+        left: 50%;
+        transform: translateX(-30px);
     }
 
-    /* Dla ostatniej kolumny */
     #calendar > .day:nth-child(7n).has-event:hover::after {
-    left: 50%; /* Przesuwamy bardziej w lewo */
-    transform: translateX(-110px); /* Nie przesuwamy już o 50% */
+        left: 50%;
+        transform: translateX(-110px);
     }
 }
-    @media (hover: hover) {
-        .day.has-event:hover::after {
-            display: block;
-        }
+
+@media (hover: hover) {
+    .day.has-event:hover::after {
+        display: block;
     }
-    
-    /* Pokaż tooltip na tapnięcie dla urządzeń mobilnych */
-    @media (hover: none) {
-        .day.has-event:focus::after,
-        .day.has-event:active::after {
-            display: block;
-        }
+}
+
+@media (hover: none) {
+    .day.has-event:focus::after,
+    .day.has-event:active::after {
+        display: block;
+    }
+}

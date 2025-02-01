@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-controls button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calendar-controls button:hover {
+    background-color: #218838;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px; /* Zmniejszona przerwa między dniami */
+    margin-bottom: 20px;
+}
+
+.day {
+    padding: 15px 10px; /* Większy padding w pionie */
+    border: 1px solid #ccc;
+    text-align: center;
+    background-color: #f9f9f9;
+    position: relative;
+    font-size: 14px;
+    min-height: 60px; /* Minimalna wysokość kafelka */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day.empty {
+    background-color: #e9e9e9;
+    border: none;
+}
+
+.day.has-event {
+    background-color: #d1e7dd;
+}
+
+.day.has-event:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: pre-line;
+    z-index: 10;
+    font-size: 14px;
+    min-width: 150px;
+    word-wrap: break-word;
+}
+.day.has-event:active::after,
+.day.has-event:focus::after {
+    display: block; /* Pokaż tooltip po kliknięciu */
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Responsywność dla urządzeń mobilnych */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .calendar-controls {
+        flex-direction: row; /* Przyciski pozostają w jednym rzędzie */
+        align-items: center;
+    }
+
+    .calendar-controls button {
+        margin: 0 5px; /* Mniejszy margines między przyciskami */
+        padding: 8px; /* Mniejszy padding dla przycisków */
+        font-size: 14px; /* Mniejsza czcionka w przyciskach */
+    }
+
+    #calendar {
+        gap: 3px; /* Jeszcze mniejsza przerwa między dniami */
+    }
+
+    .day {
+        padding: 10px 5px; /* Mniejszy padding w pionie na mobilnych */
+        font-size: 12px; /* Mniejsza czcionka w dniach */
+        min-height: 40px; /* Zmniejszona wysokość o około 50% */
+    }
+
+    .day.has-event:hover::after {
+    font-size: 14px;
+    min-width: 120px;
+
+    }
+
+    /* Dla pierwszej kolumny */
+    #calendar > .day:nth-child(7n+1).has-event:hover::after {
+    left: 50%; /* Przesuwamy bardziej w prawo */
+    transform: translateX(-30px); /* Nie przesuwamy już o 50% */
+    }
+
+    /* Dla ostatniej kolumny */
+    #calendar > .day:nth-child(7n).has-event:hover::after {
+    left: 50%; /* Przesuwamy bardziej w lewo */
+    transform: translateX(-110px); /* Nie przesuwamy już o 50% */
+    }
+
+}

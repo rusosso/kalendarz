@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 "time": "16:00",
                 "title": "Fizyka",
-                "description": "Egzamin z Fizyki (dla osób z 4.5 i mniej z  labów)"
+                "description": "ul. Grunwaldzka  111C"
             },
             {
                 "time": "19:45",
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 "time": "17:30",
                 "title": "Algebra",
-                "description": "Egzamin z Algebry ale chuj wie czy napewno na 17:30"
+                "description": "ul. Wojska Polskiego 109/110"
             }
         ],
         "2025-02-09": 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 "time": "11:00",
                 "title": "SO",
-                "description": "Egzamin z SO"
+                "description": "ul. Wojska  Polskiego 109/110"
             }
         ],
     };

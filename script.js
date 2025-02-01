@@ -42,6 +42,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 "description": "ul. Wojska  Polskiego 109/110"
             }
         ],
+        "2025-02-21": 
+        [
+            {
+                "time": "17:30",
+                "title": "Algebra Poprawka",
+                "description": "ul. Wojska Polskiego 109/110"
+            }
+        ],
+        "2025-02-23": 
+        [
+            {
+                "time": "11:00",
+                "title": "SO Poprawka",
+                "description": "ul. Wojska  Polskiego 109/110"
+            }
+        ],
+        "2025-02-25": 
+        [
+            {
+                "time": "16:00",
+                "title": "Fizyka Poprawka",
+                "description": "ul. Grunwaldzka  111C"
+            },
+        ],
+        
+        
     };
 
     // Pobranie pierwszej daty z wydarzeń lub bieżącej daty

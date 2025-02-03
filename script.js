@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Pseudo baza danych 
     const events = {
+        "2025-02-03": 
+        [
+            {
+                "time": "23:00",
+                "title": "sprawozdania z PP",
+                "description": "Termin oddania sprawozdan od 4 do 10"
+            },
+        ],
         "2025-02-07": 
         [
             {
